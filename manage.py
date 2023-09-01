@@ -1,9 +1,10 @@
+import datetime
 import getpass
 import unittest
 
 from flask.cli import FlaskGroup
 
-from src import app, db
+from src.exts import app, db
 from src.accounts.models import User
 
 cli = FlaskGroup(app)
@@ -30,7 +31,8 @@ def create_admin():
         print("Passwords don't match")
         return 1
     try:
-        user = User(email=email, password=password, is_admin=True)
+        user = User(email=email, password=password, is_admin=True,
+                    is_confirmed=True, confirmed_on=datetime.now(),)
         db.session.add(user)
         db.session.commit()
         print(f"Admin with email {email} created successfully!")
