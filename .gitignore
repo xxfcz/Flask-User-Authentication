@@ -2,7 +2,7 @@
 *.sqlite
 .DS_Store
 .coverage
-env
+.venv
 migrations
 tmp
 __pycache__
